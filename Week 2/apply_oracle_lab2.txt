@@ -1,0 +1,279 @@
+SQL> 
+SQL> -- Enter code below.
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #1
+SQL> -- ------------------------------------------------------------------
+SQL> COL account_number 	     FORMAT A12 HEADING "Account|Number"
+SQL> COL credit_card_number  FORMAT A22 HEADING "Credit|Card Number"
+SQL> 
+SQL> SELECT
+  2    account_number
+  3  , credit_card_number
+  4  FROM member;
+
+Account      Credit                                                             
+Number       Card Number                                                        
+------------ ----------------------                                             
+B293-71445   1111-2222-3333-4444                                                
+B293-71446   2222-3333-4444-5555                                                
+B293-71447   3333-4444-5555-6666                                                
+R11-514-34   1111-1111-1111-1111                                                
+R11-514-35   1111-2222-1111-1111                                                
+R11-514-36   1111-1111-2222-1111                                                
+R11-514-37   3333-1111-1111-2222                                                
+R11-514-38   1111-1111-3333-1111                                                
+
+8 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #2
+SQL> -- ------------------------------------------------------------------
+SQL> COL first_name  FORMAT A12 HEADING "First Name"
+SQL> COL middle_name FORMAT A12 HEADING "Middle Name"
+SQL> COL last_name   FORMAT A12 HEADING "Last Name"
+SQL> 
+SQL> SELECT
+  2    first_name
+  3  , NVL(middle_name, '<NULL>') AS middle_name
+  4  , last_name
+  5  FROM contact
+  6  ORDER BY last_name ASC;
+
+First Name   Middle Name  Last Name                                             
+------------ ------------ ------------                                          
+Goeffrey     Ward         Clinton                                               
+Simon        Jonah        Gretelz                                               
+Wendy        <NULL>       Moss                                                  
+Elizabeth    Jane         Royal                                                 
+Brian        Nathan       Smith                                                 
+Ian          M            Sweeney                                               
+Meaghan      <NULL>       Sweeney                                               
+Matthew      <NULL>       Sweeney                                               
+Oscar        <NULL>       Vizquel                                               
+Doreen       <NULL>       Vizquel                                               
+Brian        <NULL>       Winn                                                  
+Randi        <NULL>       Winn                                                  
+
+12 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #3
+SQL> -- ------------------------------------------------------------------
+SQL> COL city			     FORMAT A14      HEADING "City"
+SQL> COL state_province      FORMAT A8	     HEADING "State|Prince"
+SQL> COL postal_code	     FORMAT A8	     HEADING "Postal|Code"
+SQL> 
+SQL> SELECT
+  2    city
+  3  , state_province
+  4  , postal_code
+  5  FROM address;
+
+               State    Postal                                                  
+City           Prince   Code                                                    
+-------------- -------- --------                                                
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+Provo          Utah     84606                                                   
+Provo          Utah     84606                                                   
+Provo          Utah     84606                                                   
+Provo          Utah     84606                                                   
+Spanish Fork   Utah     84606                                                   
+
+12 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #4
+SQL> -- ------------------------------------------------------------------
+SQL> COL check_out_date      FORMAT A12 HEADING "Check Out|Date"
+SQL> COL return_date	     FORMAT A12 HEADING "Return|Date"
+SQL> 
+SQL> SELECT
+  2    check_out_date
+  3  , return_date
+  4  FROM rental;
+
+Check Out    Return                                                             
+Date         Date                                                               
+------------ ------------                                                       
+29-APR-20    04-MAY-20                                                          
+29-APR-20    04-MAY-20                                                          
+29-APR-20    04-MAY-20                                                          
+29-APR-20    04-MAY-20                                                          
+29-APR-20    04-MAY-20                                                          
+
+5 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #5
+SQL> -- ------------------------------------------------------------------
+SQL> COL item_title		     FORMAT A30      HEADING "Item Title"
+SQL> COL item_rating		     FORMAT A5	     HEADING "Item|Rating"
+SQL> COL item_release_date   FORMAT A12      HEADING "Item|Release|Date"
+SQL> 
+SQL> SELECT
+  2    item_title
+  3  , item_rating
+  4  , item_release_date
+  5  FROM item
+  6  WHERE UPPER(item_title) LIKE 'STAR%';
+
+                                     Item                                       
+                               Item  Release                                    
+Item Title                     Ratin Date                                       
+------------------------------ ----- ------------                               
+Star Wars I                    PG    04-MAY-99                                  
+Star Wars II                   PG    16-MAY-02                                  
+Star Wars II                   PG    16-MAY-02                                  
+Star Wars III                  PG13  19-MAY-05                                  
+
+4 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #6
+SQL> -- ------------------------------------------------------------------
+SQL> COL item_title		     FORMAT A30      HEADING "Item Title"
+SQL> COL item_rating		     FORMAT A5	     HEADING "Item|Rating"
+SQL> COL item_release_date   FORMAT A12      HEADING "Item|Release|Date"
+SQL> 
+SQL> SELECT
+  2    item_title
+  3  , item_rating
+  4  , item_release_date
+  5  FROM item
+  6  WHERE UPPER(item_rating) = 'PG'
+  7  ORDER BY item_title ASC;
+
+                                     Item                                       
+                               Item  Release                                    
+Item Title                     Ratin Date                                       
+------------------------------ ----- ------------                               
+Beau Geste                     PG    01-MAR-92                                  
+Hook                           PG    11-DEC-91                                  
+Star Wars I                    PG    04-MAY-99                                  
+Star Wars II                   PG    16-MAY-02                                  
+Star Wars II                   PG    16-MAY-02                                  
+The Chronicles of Narnia       PG    16-MAY-02                                  
+The Hunt for Red October       PG    02-MAR-90                                  
+
+7 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #7
+SQL> -- ------------------------------------------------------------------
+SQL> COL first_name  FORMAT A12 HEADING "First Name"
+SQL> COL middle_name FORMAT A12 HEADING "Middle Name"
+SQL> COL last_name   FORMAT A12 HEADING "Last Name"
+SQL> 
+SQL> SELECT
+  2    first_name
+  3  , NVL(middle_name, '<NULL>') AS middle_name
+  4  , last_name
+  5  FROM contact
+  6  WHERE last_name = 'Sweeney'
+  7  	     AND middle_name IS NULL;
+
+First Name   Middle Name  Last Name                                             
+------------ ------------ ------------                                          
+Meaghan      <NULL>       Sweeney                                               
+Matthew      <NULL>       Sweeney                                               
+
+2 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #8
+SQL> -- ------------------------------------------------------------------
+SQL> COL first_name  FORMAT A12 HEADING "First Name"
+SQL> COL middle_name FORMAT A12 HEADING "Middle Name"
+SQL> COL last_name   FORMAT A12 HEADING "Last Name"
+SQL> 
+SQL> SELECT
+  2    first_name
+  3  , NVL(middle_name, '<NULL>') AS middle_name
+  4  , last_name
+  5  FROM contact
+  6  WHERE LOWER(last_name) LIKE 'viz%';
+
+First Name   Middle Name  Last Name                                             
+------------ ------------ ------------                                          
+Oscar        <NULL>       Vizquel                                               
+Doreen       <NULL>       Vizquel                                               
+
+2 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #9
+SQL> -- ------------------------------------------------------------------
+SQL> COL city			     FORMAT A14      HEADING "City"
+SQL> COL state_province      FORMAT A8	     HEADING "State|Prince"
+SQL> COL postal_code	     FORMAT A8	     HEADING "Postal|Code"
+SQL> 
+SQL> SELECT
+  2    city
+  3  , state_province
+  4  , postal_code
+  5  FROM address
+  6  WHERE city IN ('Provo', 'San Jose');
+
+               State    Postal                                                  
+City           Prince   Code                                                    
+-------------- -------- --------                                                
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+San Jose       CA       95192                                                   
+Provo          Utah     84606                                                   
+Provo          Utah     84606                                                   
+Provo          Utah     84606                                                   
+Provo          Utah     84606                                                   
+
+11 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Step #10
+SQL> -- ------------------------------------------------------------------
+SQL> COL item_title		     FORMAT A30 HEADING "Item Title"
+SQL> COL item_release_date   FORMAT A12 HEADING "Item|Release|Date"
+SQL> 
+SQL> SELECT
+  2    item_title
+  3  , item_release_date
+  4  FROM item
+  5  WHERE item_release_date
+  6    BETWEEN '01-JAN-2003' AND '31-DEC-2003';
+
+                               Item                                             
+                               Release                                          
+Item Title                     Date                                             
+------------------------------ ------------                                     
+RoboCop                        24-JUL-03                                        
+Pirates of the Caribbean       30-JUN-03                                        
+The Chronicles of Narnia       30-JUN-03                                        
+MarioKart                      17-NOV-03                                        
+Splinter Cell                  08-APR-03                                        
+
+5 rows selected.
+
+SQL> 
+SQL> -- ------------------------------------------------------------------
+SQL> -- Enter lab code above.
+SQL> 
+SQL> -- Close log file.
+SQL> SPOOL OFF
